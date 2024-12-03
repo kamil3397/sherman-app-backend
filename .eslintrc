@@ -1,0 +1,129 @@
+{
+    "plugins": ["@typescript-eslint/eslint-plugin"],
+    "extends": [
+      "plugin:@typescript-eslint/recommended",
+      "airbnb-base",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript"
+    ],
+    "globals": {
+      "Atomics": "readonly",
+      "SharedArrayBuffer": "readonly"
+    },
+    "env": {
+      "node": true
+    },
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+      "ecmaVersion": 2018,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "modules": true
+      }
+    },
+    "rules": {
+      "@typescript-eslint/no-non-null-assertion": "off",
+      "@typescript-eslint/ban-ts-comment": "off",
+      "@typescript-eslint/no-inferrable-types": "off",
+      "@typescript-eslint/ban-types": "off",
+      "@typescript-eslint/no-empty-function": "off",
+      "@typescript-eslint/no-this-alias": "warn",
+      "@typescript-eslint/no-shadow": "warn",
+      "prefer-const": "warn",
+      "comma-dangle": "off",
+      "object-curly-newline": "off",
+      "func-names": "off",
+      "arrow-parens": "off",
+      "arrow-body-style": "off",
+      "dot-notation": "warn",
+      "consistent-return": "warn",
+      "prefer-template": "warn",
+      "operator-linebreak": "off",
+      "no-param-reassign": "warn",
+      "no-undef": "warn",
+      "prefer-arrow-callback": "warn",
+      "no-unused-vars": "off",
+      "no-else-return": "warn",
+      "spaced-comment": "warn",
+      "generator-star-spacing": "off",
+      "space-before-function-paren": "off",
+      "no-redeclare": "off",
+      // False positives with TypeScript enums: https://github.com/typescript-eslint/typescript-eslint/issues/2483
+      "no-shadow": "off",
+      "no-use-before-define": "warn",
+      "no-empty-function": "off",
+      "lines-between-class-members": "off",
+      "no-plusplus": "warn",
+      "one-var": "warn",
+      "prefer-destructuring": "warn",
+      "no-useless-constructor": "off",
+      "guard-for-in": "warn",
+      "no-extra-boolean-cast": "warn",
+      "no-restricted-syntax": "off",
+      "lines-around-directive": "warn",
+      "keyword-spacing": "warn",
+      "eqeqeq": "warn",
+      "camelcase": "warn",
+      "strict": "off",
+      "no-await-in-loop": "off",
+      "no-underscore-dangle": "off",
+      "no-useless-computed-key": "off",
+      "no-multi-spaces": "off",
+      "no-useless-return": "off",
+      "object-shorthand": "off",
+      "no-lonely-if": "off",
+      "no-return-await": "warn",
+      "implicit-arrow-linebreak": "off",
+      "function-paren-newline": "off",
+      "max-classes-per-file": "warn",
+      "class-methods-use-this": "off",
+      "@typescript-eslint/no-var-requires": "off",
+      "array-bracket-spacing": "warn",
+      "no-unused-expressions": "off",
+      "vars-on-top": "off",
+      "no-useless-escape": "off",
+      "quotes": "warn",
+      "no-var": "warn",
+      "no-case-declarations": "warn",
+      "default-case": "warn",
+      "global-require": "off",
+      "radix": "warn",
+      "one-var-declaration-per-line": "warn",
+      "no-prototype-builtins": "warn",
+      "no-restricted-globals": "off",
+      "no-empty": "off",
+      "padded-blocks": "off",
+      "import/namespace": "warn",
+      "import/first": "warn",
+      "import/no-unresolved": "off",
+      "import/export": "warn",
+      "import/prefer-default-export": "off",
+      "import/newline-after-import": "warn",
+      "import/order": "warn",
+      "import/no-cycle": "warn",
+      "import/no-extraneous-dependencies": "off",
+      "import/no-useless-path-segments": "warn",
+      "import/no-named-default": "off",
+      "import/extensions": [
+        1,
+        {
+          ".ts": "always"
+        }
+      ],
+      "max-len": [
+        1,
+        {
+          "code": 120,
+          "ignoreComments": true,
+          "ignoreTrailingComments": true,
+          "ignoreTemplateLiterals": true,
+          "ignoreUrls": true,
+          "ignoreStrings": true,
+          "ignoreRegExpLiterals": true
+        }
+      ],
+      "indent": [1, 2]
+    }
+  }
+  
