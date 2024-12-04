@@ -24,6 +24,8 @@ const run = async () => {
 
   app.post('/login', async (req, res) => authController.login(req, res));
 
+  app.post('/logout', verifyToken, async (req, res) => { authController.logout(req, res); });
+
   app.listen(process.env.PORT, () => { console.log('info', `Server running on port ${process.env.PORT}`); });
 
 };
