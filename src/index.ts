@@ -8,6 +8,14 @@ import { AuthController } from './controllers/AuthController';
 import { verifyToken } from './middleware/verifyToken';
 import { validateRegister } from './validators/registerSchema';
 
+ interface UserType {
+    _id?: string;
+    name: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }
+
 const run = async () => {
   const app = express();
   app.use(bodyParser.json());
@@ -19,7 +27,9 @@ const run = async () => {
 
   const database = mongoClient.db();
 
-  const authController = new AuthController(database.collection('users'));
+  const usersCollection = database.collection<UserType>('users');
+
+  const authController = new AuthController(usersCollection);
 
   app.post('/register',  validateRegister, async (req, res) => authController.register(req, res));
 
