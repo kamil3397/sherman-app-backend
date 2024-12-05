@@ -6,6 +6,15 @@ import cors from 'cors';
 import { MongoClient } from 'mongodb';
 import { AuthController } from './controllers/AuthController';
 import { verifyToken } from './middleware/verifyToken';
+import { validateRegister } from './validators/registerSchema';
+
+ interface UserType {
+    _id?: string;
+    name: string;
+    lastName: string;
+    email: string;
+    password: string;
+  }
 
 const run = async () => {
   const app = express();
@@ -18,11 +27,15 @@ const run = async () => {
 
   const database = mongoClient.db();
 
-  const authController = new AuthController(database.collection('users'));
+  const usersCollection = database.collection<UserType>('users');
 
-  app.post('/register', async (req, res) => authController.register(req, res));
+  const authController = new AuthController(usersCollection);
+
+  app.post('/register',  validateRegister, async (req, res) => authController.register(req, res));
 
   app.post('/login', async (req, res) => authController.login(req, res));
+
+  app.post('/logout', verifyToken, async (req, res) => { authController.logout(req, res); });
 
   app.listen(process.env.PORT, () => { console.log('info', `Server running on port ${process.env.PORT}`); });
 
