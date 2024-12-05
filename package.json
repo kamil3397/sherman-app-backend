@@ -4,7 +4,7 @@
     "description": "Backend for the new-react-app",
     "main": "dist/index.js",
     "scripts": {
-        "server": "ts-node -r dotenv/config src/index.ts",
+        "server": "nodemon -L -r dotenv/config --exec ts-node src/index.ts",
         "build": "tsc",
         "dev": "ts-node-dev -r dotenv/config --cls --inspect=0.0.0.0:10000 --trace-warnings -- ./src/index.ts",
         "lint": "eslint --ext .ts -f table src || exit 0",
@@ -50,7 +50,9 @@
         "express": "^4.18.2",
         "jsonwebtoken": "^9.0.2",
         "mongodb": "^6.3.0",
+        "nodemon": "^3.1.7",
         "styled-components": "^6.1.13",
-        "uuid": "^9.0.1"
+        "uuid": "^9.0.1",
+        "yup": "^1.5.0"
     }
 }

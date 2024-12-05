@@ -6,6 +6,7 @@ import cors from 'cors';
 import { MongoClient } from 'mongodb';
 import { AuthController } from './controllers/AuthController';
 import { verifyToken } from './middleware/verifyToken';
+import { validateRegister } from './validators/registerSchema';
 
 const run = async () => {
   const app = express();
@@ -20,7 +21,7 @@ const run = async () => {
 
   const authController = new AuthController(database.collection('users'));
 
-  app.post('/register', async (req, res) => authController.register(req, res));
+  app.post('/register',  validateRegister, async (req, res) => authController.register(req, res));
 
   app.post('/login', async (req, res) => authController.login(req, res));
 
