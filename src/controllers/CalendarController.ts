@@ -32,19 +32,6 @@ export class CalendarController {
     }
   }
 
-  //   async getEvents(req: Request, res: Response) {
-  //     // formatowanie na podstawie startDate i endDate, wysylanych w paramsach
-  //     try {
-  //       const events = await this.calendarEventsCollection.find().toArray();
-  //       if (!events) {
-  //         return res.status(404).send({ message: 'No events found' });
-  //       }
-  //       return res.status(200).send(events);
-  //     } catch (err) {
-  //       return res.status(500).send({ message: 'Internal Server Error' });
-  //     }
-  //   }
-  // }
   async getEvents(req: Request, res: Response) {
     try {
 
