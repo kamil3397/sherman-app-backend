@@ -28,7 +28,6 @@ const run = async () => {
 
   const database = mongoClient.db();
 
-  // const usersCollection = database.collection<UserType>('users');
 
   const authController = new AuthController(database.collection('users'));
 
