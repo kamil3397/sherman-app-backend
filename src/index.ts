@@ -28,7 +28,6 @@ const run = async () => {
 
   const database = mongoClient.db();
 
-
   const authController = new AuthController(database.collection('users'));
 
   const calendarController = new CalendarController(database.collection('calendarEvents'));
