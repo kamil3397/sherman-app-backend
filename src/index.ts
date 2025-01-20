@@ -7,6 +7,7 @@ import { MongoClient } from 'mongodb';
 import { AuthController } from './controllers/AuthController';
 import { verifyToken } from './middleware/verifyToken';
 import { validateRegister } from './validators/registerSchema';
+import { CalendarController } from './controllers/CalendarController';
 
  interface UserType {
     _id?: string;
@@ -27,15 +28,25 @@ const run = async () => {
 
   const database = mongoClient.db();
 
-  const usersCollection = database.collection<UserType>('users');
+  const authController = new AuthController(database.collection('users'));
 
-  const authController = new AuthController(usersCollection);
+  const calendarController = new CalendarController(database.collection('calendarEvents'));
 
   app.post('/register',  validateRegister, async (req, res) => authController.register(req, res));
 
   app.post('/login', async (req, res) => authController.login(req, res));
 
   app.post('/logout', verifyToken, async (req, res) => { authController.logout(req, res); });
+
+  //! pamiętaj odkomentowac verifyToken
+
+  app.post('/calendar/events/add',
+    // verifyToken,
+    async (req, res) => calendarController.addEvent(req, res));
+
+  app.get('/calendar',
+    // verifyToken,
+    async (req, res) => calendarController.getEvents(req, res));
 
   app.listen(process.env.PORT, () => { console.log('info', `Server running on port ${process.env.PORT}`); });
 
