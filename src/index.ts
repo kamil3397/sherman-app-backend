@@ -28,8 +28,6 @@ const run = async () => {
 
   const database = mongoClient.db();
 
-  // const usersCollection = database.collection<UserType>('users');
-
   const authController = new AuthController(database.collection('users'));
 
   const calendarController = new CalendarController(database.collection('calendarEvents'));
@@ -38,6 +36,7 @@ const run = async () => {
 
   app.post('/login', async (req, res) => authController.login(req, res));
 
+  //! pamiętaj odkomentowac verifyToken
   app.post('/calendar/events/add',
     // verifyToken,
     async (req, res) => calendarController.addEvent(req, res));
