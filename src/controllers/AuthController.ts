@@ -77,19 +77,4 @@ export class AuthController {
             return res.status(500).send({ message: 'Internal Server Error' });
         }
     }
-
-    async logout(req: Request, res: Response) {
-        const token = req.headers.authorization;
-        if (!token) {
-            return res.status(401).send({ message: 'Unauthorized: No token provided' });
-        }
-        return this.usersCollection.deleteOne({ token })
-            .then(() => {
-                return res.status(200).send({ message: 'Logout successful' });
-            })
-            .catch((error) => {
-                console.error('Error during logout:', error);
-                return res.status(500).send({ message: 'Internal Server Error' });
-            });
-    }
 }
