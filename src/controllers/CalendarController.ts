@@ -54,17 +54,20 @@ export class CalendarController {
 
       const startDate = new Date(req.query.startDate as string).toISOString();
       const endDate = new Date(req.query.endDate as string).toISOString();
+      console.log('startDate:', startDate);
+      console.log('endDate:', endDate);
 
       const events = await this.calendarEventsCollection.find({
         startDate: { $gte: startDate },
         endDate: { $lte: endDate }
       }).toArray();
-
-      if (!events || events.length === 0) {
-        return res.status(204).send({ message: 'No events found' });
-      }
+      // if (!events || events.length === 0) {
+      //   return res.status(204).send({ message: 'No events found' });
+      // }
       return res.status(200).send(events);
+
     } catch (err) {
+      console.error('Błąd w getEvents:', err);
       return res.status(500).send({ message: 'Internal Server Error' });
     }
   }

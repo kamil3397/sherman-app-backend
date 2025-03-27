@@ -42,7 +42,7 @@ const run = async () => {
   app.post('/login', async (req, res) => authController.login(req, res));
 
   app.post('/calendar/events/add',
-    // verifyToken,
+    // verifyToken
     async (req, res) => calendarController.addEvent(req, res));
 
   app.get('/calendar',
