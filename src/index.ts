@@ -8,6 +8,7 @@ import { AuthController } from './controllers/AuthController';
 import { verifyToken } from './middleware/verifyToken';
 import { validateRegister } from './validators/registerSchema';
 import { CalendarController } from './controllers/CalendarController';
+import { UserController } from './controllers/UserController';
 
  interface UserType {
     _id?: string;
@@ -32,18 +33,22 @@ const run = async () => {
 
   const calendarController = new CalendarController(database.collection('calendarEvents'));
 
+  const usersController = new UserController(database.collection('users'));
+
   app.post('/register',  validateRegister, async (req, res) => authController.register(req, res));
 
   app.post('/login', async (req, res) => authController.login(req, res));
 
   //! pamiętaj odkomentowac verifyToken
   app.post('/calendar/events/add',
-    // verifyToken,
+    // verifyToken
     async (req, res) => calendarController.addEvent(req, res));
 
   app.get('/calendar',
     // verifyToken,
     async (req, res) => calendarController.getEvents(req, res));
+
+  app.get('/users', (_, res) => usersController.getAll(res));
 
   app.listen(process.env.PORT, () => { console.log('info', `Server running on port ${process.env.PORT}`); });
 
